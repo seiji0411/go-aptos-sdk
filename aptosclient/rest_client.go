@@ -124,7 +124,19 @@ func doReqWithClient(req *http.Request, result interface{}, client *http.Client)
 		return err
 	}
 	defer resp.Body.Close()
+
 	return handleResponse(result, resp)
+}
+
+// doReq send request and unmarshal response body to result
+func (c *RestClient) doReqWithNext(req *http.Request, result interface{}) (next string, err error) {
+	resp, err := c.c.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	return resp.Header.Get("X-Aptos-Cursor"), handleResponse(result, resp)
 }
 
 // handleResponse read response data and unmarshal to result

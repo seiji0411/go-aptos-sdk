@@ -18,7 +18,7 @@ func (c *RestClient) GetAccount(address string) (res *aptostypes.AccountCoreData
 	return
 }
 
-func (c *RestClient) GetAccountResources(address string, version uint64) (res []aptostypes.AccountResource, err error) {
+func (c *RestClient) GetAccountResources(address string, version uint64, cursor string) (res []aptostypes.AccountResource, next string, err error) {
 	req, err := http.NewRequest("GET", c.GetVersionedRpcUrl()+"/accounts/"+address+"/resources", nil)
 	if err != nil {
 		return
@@ -28,7 +28,12 @@ func (c *RestClient) GetAccountResources(address string, version uint64) (res []
 		q.Add("ledger_version", strconv.FormatUint(version, 10))
 		req.URL.RawQuery = q.Encode()
 	}
-	err = c.doReq(req, &res)
+	if cursor != "" {
+		q := req.URL.Query()
+		q.Add("start", cursor)
+		req.URL.RawQuery = q.Encode()
+	}
+	next, err = c.doReqWithNext(req, &res)
 	return
 }
 

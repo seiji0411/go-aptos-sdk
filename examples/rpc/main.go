@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"encoding/json"
+	// "encoding/json"
 	"errors"
 	"fmt"
 
@@ -10,7 +10,7 @@ import (
 	"github.com/seiji0411/go-aptos-sdk/aptostypes"
 )
 
-const rpcUrl = "https://fullnode.devnet.aptoslabs.com"
+const rpcUrl = "https://fullnode.mainnet.aptoslabs.com"
 
 func main() {
 	ctx := context.Background()
@@ -18,32 +18,39 @@ func main() {
 	if err != nil {
 		printError(err)
 	}
-	ledgerInfo, err := client.LedgerInfo()
-	if err != nil {
-		panic(err)
-	}
-	content, err := json.Marshal(ledgerInfo)
-	if err != nil {
-		printError(err)
-	}
-	fmt.Println(string(content))
+	res, next, _ := client.GetAccountResources("0x05a97986a9d031c4567e15b797be516910cfcb4156312482efc6a19c0a30c948", 0, "")
+	fmt.Println(len(res))
 
-	transactions, err := client.GetTransactions(1, 10)
-	if err != nil {
-		printError(err)
+	if next != "" {
+		res, _, _ = client.GetAccountResources("0x05a97986a9d031c4567e15b797be516910cfcb4156312482efc6a19c0a30c948", 0, next)
+		fmt.Println(len(res))
 	}
-	printLine("get tx list")
-	for _, tx := range transactions {
-		fmt.Printf("version: %d, type: %s, hash: %s, round: %d, time: %d\n", tx.Version, tx.Type, tx.Hash, tx.Round, tx.Timestamp)
-	}
+	// ledgerInfo, err := client.LedgerInfo()
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// content, err := json.Marshal(ledgerInfo)
+	// if err != nil {
+	// 	printError(err)
+	// }
+	// fmt.Println(string(content))
 
-	events, err := client.GetEventsByCreationNumber("0x8ab4fe552d76c49cdf7a4707338520ddf5de705044665fbcc4b6ea60a6b026d4", "2", 0, 10)
-	if err != nil {
-		printError(err)
-	}
-	for _, e := range events {
-		fmt.Println(e.SequenceNumber)
-	}
+	// transactions, err := client.GetTransactions(1, 10)
+	// if err != nil {
+	// 	printError(err)
+	// }
+	// printLine("get tx list")
+	// for _, tx := range transactions {
+	// 	fmt.Printf("version: %d, type: %s, hash: %s, round: %d, time: %d\n", tx.Version, tx.Type, tx.Hash, tx.Round, tx.Timestamp)
+	// }
+
+	// events, err := client.GetEventsByCreationNumber("0x8ab4fe552d76c49cdf7a4707338520ddf5de705044665fbcc4b6ea60a6b026d4", "2", 0, 10)
+	// if err != nil {
+	// 	printError(err)
+	// }
+	// for _, e := range events {
+	// 	fmt.Println(e.SequenceNumber)
+	// }
 }
 
 func printLine(content string) {
