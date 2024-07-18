@@ -4,7 +4,7 @@ import (
 	"crypto/ed25519"
 	"errors"
 
-	"github.com/coming-chat/go-aptos/crypto/derivation"
+	"github.com/seiji0411/go-aptos-sdk/crypto/derivation"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/crypto/sha3"
 )

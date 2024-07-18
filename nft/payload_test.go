@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coming-chat/go-aptos/aptosaccount"
-	"github.com/coming-chat/go-aptos/aptosclient"
-	"github.com/coming-chat/go-aptos/aptostypes"
-	txnBuilder "github.com/coming-chat/go-aptos/transaction_builder"
+	"github.com/seiji0411/go-aptos-sdk/aptosaccount"
+	"github.com/seiji0411/go-aptos-sdk/aptosclient"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
+	txnBuilder "github.com/seiji0411/go-aptos-sdk/transaction_builder"
 	"github.com/stretchr/testify/require"
 )
 

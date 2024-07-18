@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/coming-chat/go-aptos/aptostypes"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
 )
 
 func (c *RestClient) GetTransactions(start, limit uint64) (res []aptostypes.Transaction, err error) {

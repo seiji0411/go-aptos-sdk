@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/coming-chat/go-aptos/aptosaccount"
-	"github.com/coming-chat/go-aptos/aptostypes"
-	txBuilder "github.com/coming-chat/go-aptos/transaction_builder"
 	"github.com/coming-chat/lcs"
+	"github.com/seiji0411/go-aptos-sdk/aptosaccount"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
+	txBuilder "github.com/seiji0411/go-aptos-sdk/transaction_builder"
 	"github.com/stretchr/testify/require"
 )
 

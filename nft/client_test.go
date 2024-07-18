@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/coming-chat/go-aptos/aptosclient"
-	txnBuilder "github.com/coming-chat/go-aptos/transaction_builder"
+	"github.com/seiji0411/go-aptos-sdk/aptosclient"
+	txnBuilder "github.com/seiji0411/go-aptos-sdk/transaction_builder"
 	"github.com/stretchr/testify/require"
 )
 

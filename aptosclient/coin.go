@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/coming-chat/go-aptos/aptostypes"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
 )
 
 func (c *RestClient) GetCoinInfo(coinType string) (aptostypes.CoinInfo, error) {

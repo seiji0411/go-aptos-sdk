@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/coming-chat/go-aptos/aptostypes"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
 )
 
 type RemoteModuleFetcher interface {

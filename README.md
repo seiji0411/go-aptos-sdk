@@ -9,7 +9,7 @@ We welcome other developers to participate in the development and testing of gol
 ## Install
 
 ```sh
-go get github.com/coming-chat/go-aptos
+go get -u github.com/seiji0411/go-aptos-sdk
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/coming-chat/go-aptos
 ### Account
 
 ```go
-import "github.com/coming-chat/go-aptos/aptosaccount"
+import "github.com/seiji0411/go-aptos-sdk/aptosaccount"
 
 // Import account with mnemonic
 account, err := aptosaccount.NewAccountWithMnemonic(mnemonic)
@@ -39,10 +39,10 @@ signedData := account.Sign(data, "")
 > NOTE: The implementation of bcs is based on the [lcs](https://github.com/coming-chat/lcs) library
 
 ```go
-import "github.com/coming-chat/go-aptos/aptosaccount"
-import "github.com/coming-chat/go-aptos/aptosclient"
-import "github.com/coming-chat/go-aptos/aptostypes"
-import txBuilder "github.com/coming-chat/go-aptos/transaction_builder"
+import "github.com/seiji0411/go-aptos-sdk/aptosaccount"
+import "github.com/seiji0411/go-aptos-sdk/aptosclient"
+import "github.com/seiji0411/go-aptos-sdk/aptostypes"
+import txBuilder "github.com/seiji0411/go-aptos-sdk/transaction_builder"
 
 account, err := NewAccountWithMnemonic(mnemonic)
 fromAddress := "0x" + hex.EncodeToString(account.AuthKey[:])
@@ -97,9 +97,9 @@ fmt.Printf("tx hash = %v\n", newTx.Hash)
 ### Transfer Aptos Coin (JSON)
 
 ```go
-import "github.com/coming-chat/go-aptos/aptosaccount"
-import "github.com/coming-chat/go-aptos/aptosclient"
-import "github.com/coming-chat/go-aptos/aptostypes"
+import "github.com/seiji0411/go-aptos-sdk/aptosaccount"
+import "github.com/seiji0411/go-aptos-sdk/aptosclient"
+import "github.com/seiji0411/go-aptos-sdk/aptostypes"
 
 account, err := NewAccountWithMnemonic(mnemonic)
 fromAddress := "0x" + hex.EncodeToString(account.AuthKey[:])

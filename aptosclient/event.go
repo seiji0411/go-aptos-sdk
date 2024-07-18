@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/coming-chat/go-aptos/aptostypes"
+	"github.com/seiji0411/go-aptos-sdk/aptostypes"
 )
 
 func (c *RestClient) GetEventsByEventHandle(address, eventHandle, field string, start, limit uint64) (res []aptostypes.Event, err error) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/coming-chat/go-aptos/aptosclient"
+	"github.com/seiji0411/go-aptos-sdk/aptosclient"
 	"github.com/stretchr/testify/require"
 )
 
