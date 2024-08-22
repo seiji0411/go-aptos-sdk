@@ -1,6 +1,7 @@
 package aptosclient
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"io"
@@ -94,6 +95,34 @@ func (c *RestClient) RawQuery(urlWithoutVersion string, params map[string]string
 	if resp.StatusCode >= http.StatusBadRequest {
 		restError := &aptostypes.RestError{}
 		json.Unmarshal(data, &restError)
+		restError.Code = resp.StatusCode
+		return nil, restError
+	}
+	return
+}
+
+func (c *RestClient) ViewQuery(payload map[string]string) (res []byte, err error) {
+	data, err := json.Marshal(payload)
+	if err != nil {
+		return
+	}
+	req, err := http.NewRequest("POST", c.GetVersionedRpcUrl()+"/view", bytes.NewReader(data))
+	if err != nil {
+		return
+	}
+	req.Header["Content-Type"] = []string{"application/json"}
+
+	resp, err := c.c.Do(req)
+	if err != nil {
+		return
+	}
+	res, err = io.ReadAll(resp.Body)
+	if err != nil {
+		return
+	}
+	if resp.StatusCode >= http.StatusBadRequest {
+		restError := &aptostypes.RestError{}
+		json.Unmarshal(res, &restError)
 		restError.Code = resp.StatusCode
 		return nil, restError
 	}
