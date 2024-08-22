@@ -102,8 +102,8 @@ func (c *RestClient) RawQuery(urlWithoutVersion string, params map[string]string
 	return
 }
 
-func (c *RestClient) ViewQuery(payload string) (res []byte, err error) {
-	req, err := http.NewRequest("POST", c.GetVersionedRpcUrl()+"/view", bytes.NewReader([]byte(payload)))
+func (c *RestClient) ViewQuery(payload []byte) (res []byte, err error) {
+	req, err := http.NewRequest("POST", c.GetVersionedRpcUrl()+"/view", bytes.NewReader(payload))
 	if err != nil {
 		return
 	}
